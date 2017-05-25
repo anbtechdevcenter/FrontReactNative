@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {StyleSheet} from 'react-native';
-import { Container, Content, List, ListItem, Text } from 'native-base';
+import { ActivityIndicator, StyleSheet } from 'react-native';
+import { Container, Content, List, ListItem, Text ,Header ,Body, Title} from 'native-base';
 import Forecast from './Forecast';
 import {AnbUtil} from './components';
 
@@ -11,7 +11,8 @@ class FrontReactNative extends Component {
         super(props);
         this.state = {
           zip : '',
-          ranklist : []
+          ranklist : [],
+          animating: true
         };
     }
 
@@ -31,25 +32,51 @@ class FrontReactNative extends Component {
       AnbUtil.REST({type : "R", url : "/rank" }, (res)=>{
       //  console.log("[mealGet] ", res);
         this.setState({
-          ranklist : res
+          ranklist : res,
+          animating: false
         })
+
+
       });
 
     }
 
 
     render() {
+
+
+      let rankSortList = this.state.ranklist.sort(function(a, b) {
+          var aRcd = a.rankCode.substr(4,2);
+          var bRcd = b.rankCode.substr(4,2);
+        //	console.log(aRcd+ "" + bRcd , aRcd > bRcd);
+          return aRcd < bRcd ? -1 : aRcd > bRcd ? 1 : 0;
+        }, true);
+
         return(
           <Container>
               <Content>
+                <Header>
+                    <Body>
+                        <Title>직급현황</Title>
+                    </Body>
+                </Header>
 
-                {this.state.ranklist.map((rank)=> {
-                  return(<List key={rank.rankCode}>
-                    <ListItem>
-                      <Text>{rank.rankName}</Text>
-                    </ListItem>
-                  </List>)
-                  })
+                <ActivityIndicator
+                    animating={this.state.animating}
+                    style={[styles.centering, {height: 80}]}
+                    size="large"
+                  />
+
+                {
+                  rankSortList.map(
+                    (rank)=> {
+                    return(<List key={rank.rankCode}>
+                      <ListItem>
+                        <Text>{rank.rankName}</Text>
+                      </ListItem>
+                    </List>)
+                    }
+                  )
                 }
 
               </Content>
@@ -74,6 +101,19 @@ const styles = StyleSheet.create({
       fontSize : 20,
       borderWidth : 2,
       height : 40
+    },
+      centering: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 8,
+    },
+    gray: {
+      backgroundColor: '#cccccc',
+    },
+    horizontal: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      padding: 8,
     }
 });
 

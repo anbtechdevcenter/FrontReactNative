@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import {StyleSheet,Text,View,TextInput} from 'react-native';
+import {StyleSheet} from 'react-native';
+import { Container, Content, List, ListItem, Text } from 'native-base';
 import Forecast from './Forecast';
+import {AnbUtil} from './components';
+
 
 class FrontReactNative extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          zip : ''
+          zip : '',
+          ranklist : []
         };
     }
 
@@ -16,22 +20,40 @@ class FrontReactNative extends Component {
       this.setState({
         zip : event.nativeEvent.text
       });
+
+
+
     }
+
+    componentWillMount(){
+    //  console.log("컴포넌트 마운트 전");
+
+      AnbUtil.REST({type : "R", url : "/rank" }, (res)=>{
+      //  console.log("[mealGet] ", res);
+        this.setState({
+          ranklist : res
+        })
+      });
+
+    }
+
 
     render() {
         return(
-            <View style={styles.container}>
-              <Text style={styles.welcome}>
-              You Input {this.state.zip}.
-              </Text>
-              <TextInput
-                style={styles.input}
-                returnKeyType='go'
-                onSubmitEditing={(event)=> this._handleTextChange(event)}/>
+          <Container>
+              <Content>
 
-                <Forecast/>
+                {this.state.ranklist.map((rank)=> {
+                  return(<List key={rank.rankCode}>
+                    <ListItem>
+                      <Text>{rank.rankName}</Text>
+                    </ListItem>
+                  </List>)
+                  })
+                }
 
-            </View>
+              </Content>
+          </Container>
         );
     }
 }

@@ -6,5 +6,13 @@
 
 import {AppRegistry} from  'react-native';
 import FrontReactNative from './app/FrontReactNative';
+import { StackNavigator } from 'react-navigation';
 
-AppRegistry.registerComponent('FrontReactNative', () => FrontReactNative);
+import RankView from './app/RankView';
+
+const App = StackNavigator({
+  Main : {screen : FrontReactNative},
+  Rank : {screen : RankView}
+});
+
+AppRegistry.registerComponent('FrontReactNative', () => App);

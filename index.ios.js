@@ -6,5 +6,17 @@
 
 import {AppRegistry} from  'react-native';
 import FrontReactNative from './app/FrontReactNative';
+import { StackNavigator } from 'react-navigation';
 
-AppRegistry.registerComponent('FrontReactNative', () => FrontReactNative);
+import CodeType from './app/manage/CodeType';
+import RankView from './app/RankView';
+import StaffView from './app/staff/StaffView';
+
+const App = StackNavigator({
+  Main : {screen : FrontReactNative},
+  CodeType : {screen : CodeType},
+  Rank : {screen : RankView},
+  Staff : {screen : StaffView}
+});
+
+AppRegistry.registerComponent('FrontReactNative', () => App);

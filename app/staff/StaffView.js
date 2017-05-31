@@ -46,12 +46,13 @@ class StaffView extends Component {
 
     render() {
 
+const {navigate} = this.props.navigation;
 
       let staffs = this.state.staffList.map(
         (staff) => {
           return (
             <List key={staff.empId}>
-              <ListItem>
+              <ListItem onPress={()=>navigate('StaffDetail')}>
                 <Body>
                   <Text>{staff.empNm} {staff.rank.rankName}</Text>
                   <Text note>{staff.email}</Text>

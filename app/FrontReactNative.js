@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {StyleSheet} from 'react-native';
 import { Container, Content, List, ListItem, Text } from 'native-base';
+
+import Modal from 'react-native-modalbox';
+
 import Forecast from './Forecast';
 import {AnbUtil} from './components';
 
@@ -43,6 +46,16 @@ class FrontReactNative extends Component {
           <Container>
               <Content>
 
+
+              <Modal
+                style={[styles.modal, styles.modal1]}
+                backdrop={false}
+                ref={(c) => { this._modal = c; }}
+                swipeToClose={false}
+              >
+                <Text>모달</Text>
+              </Modal>
+
                 {this.state.ranklist.map((rank)=> {
                   return(<List key={rank.rankCode}>
                     <ListItem>
@@ -59,12 +72,6 @@ class FrontReactNative extends Component {
 }
 
 const styles = StyleSheet.create({
-    container : {
-      flex : 1,
-      justifyContent : 'center',
-      alignItems : 'center',
-      backgroundColor : '#F5FCFF'
-    },
     welcome : {
       fontSize : 20,
       textAlign : 'center',
@@ -74,6 +81,18 @@ const styles = StyleSheet.create({
       fontSize : 20,
       borderWidth : 2,
       height : 40
+    },
+    container: {
+      flex: 1,
+      width: null,
+      height: null,
+    },
+    modal: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    modal1: {
+      height: 300,
     }
 });
 

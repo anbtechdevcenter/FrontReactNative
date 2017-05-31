@@ -31,7 +31,7 @@ export default class RankView extends Component {
     }
 
     componentWillMount(){
-    //  console.log("컴포넌트 마운트 전");
+      console.log("컴포넌트 마운트 전");
 
       AnbUtil.REST({type : "R", url : "/rank" }, (res)=>{
       //  console.log("[mealGet] ", res);

@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 
 
-const API_URL = "http://restnfeel.com:8080/api";
+const API_URL = "https://restnfeel.cloud.tyk.io";
 
 export default class AnbUtil  extends Component{
 
@@ -15,7 +15,7 @@ export default class AnbUtil  extends Component{
     switch (cType) {
       case "R":
 
-        fetch(API_URL+url)
+        fetch(API_URL+url+"/")
         .then((response)=>response.json())
         .then((responseData)=>{
         //  console.log("[rData] : ", responseData);
@@ -29,7 +29,7 @@ export default class AnbUtil  extends Component{
 
       case "C" :
 
-        fetch(API_URL+url,{
+        fetch(API_URL+url+"/",{
           method : 'post',
           headers: {
             'Accept': 'application/json',
@@ -51,7 +51,7 @@ export default class AnbUtil  extends Component{
         break;
 
       case "D" :
-        fetch(API_URL+url, {
+        fetch(API_URL+url+"/", {
           method : 'delete'
         })
         .then((response)=>{

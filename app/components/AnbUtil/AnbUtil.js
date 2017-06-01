@@ -12,10 +12,19 @@ export default class AnbUtil  extends Component{
     let url = obj.url;
     let param = obj.param;
 
+    let access_token = '';
+
     switch (cType) {
       case "R":
 
-        fetch(API_URL+url+"/")
+        fetch(API_URL+url+"/", {
+          method: 'GET',
+          headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization' : 'Bearer '+access_token
+          }
+        })
         .then((response)=>response.json())
         .then((responseData)=>{
         //  console.log("[rData] : ", responseData);
@@ -33,7 +42,8 @@ export default class AnbUtil  extends Component{
           method : 'post',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization' : 'Bearer '+access_token
           },
           body : param
           })
@@ -52,7 +62,12 @@ export default class AnbUtil  extends Component{
 
       case "D" :
         fetch(API_URL+url+"/", {
-          method : 'delete'
+          method : 'delete',
+          headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization' : 'Bearer '+access_token
+          }
         })
         .then((response)=>{
           callfn();

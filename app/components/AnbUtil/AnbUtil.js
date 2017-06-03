@@ -11,8 +11,13 @@ export default class AnbUtil  extends Component{
     let cType = obj.type;
     let url = obj.url;
     let param = obj.param;
-
     let access_token = '';
+
+    if('access_token' in obj){
+      access_token= obj.access_token;
+    }
+
+console.log("AUBUTIL access_token ", access_token);
 
     switch (cType) {
       case "R":

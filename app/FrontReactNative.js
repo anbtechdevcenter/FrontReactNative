@@ -12,6 +12,9 @@ class FrontReactNative extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+          access_token : ''
+        };
     }
 
     static navigationOptions = {
@@ -20,11 +23,10 @@ class FrontReactNative extends Component {
 
     _handleLogin(){
       //console.log("start is");
-      let data = {
-       "grant_type" : "password",
-       "username" : "jhseo@anbtech.com",
-       "password" : "1"
-       };
+      let data = "grant_type=password&"+
+       "username=jhseo@anbtech.com&"+
+       "password=1";
+
 
       fetch("https://restnfeel.cloud.tyk.io/token/", {
         method : 'post',
@@ -33,7 +35,7 @@ class FrontReactNative extends Component {
           'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization' : 'Basic YW5iZGV2Y2VudGVyLWNsaWVudC13aXRoLXNlY3JldDpkZXZjZW50ZXI='
         },
-        body : JSON.stringify(data)
+        body : data
       })
       .then((response)=>response.json())
       .then((responseData)=>{
@@ -47,6 +49,12 @@ class FrontReactNative extends Component {
               position: 'center',
               buttonText: 'Okay'
           });
+        }else{
+          // set auth
+          let get_token = responseData.access_token;
+          console.log("[access_token is] ", get_token);
+      
+          //navigate('CodeType');
         }
 
 

@@ -1,19 +1,17 @@
 import React,{ Component } from 'react';
-
+import {AsyncStorage} from 'react-native';
 
 const API_URL = "https://restnfeel.cloud.tyk.io";
 
 export default class AnbUtil  extends Component{
 
-
-
   static REST(obj , callfn){
     let cType = obj.type;
     let url = obj.url;
     let param = obj.param;
-    let access_token = '';
-
-    if('access_token' in obj){
+    let access_token = AsyncStorage.getItem("access_token");
+console.log(">> ", access_token);
+    if(access_token){
       access_token= obj.access_token;
     }
 

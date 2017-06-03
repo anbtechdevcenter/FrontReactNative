@@ -27,7 +27,7 @@ class CodeType extends Component {
 
     componentWillMount(){
     //  console.log("컴포넌트 마운트 전");
-/*
+
       AnbUtil.REST({type : "R", url : "/codeType" }, (res)=>{
         console.log("[codeType] ", res);
 
@@ -38,7 +38,7 @@ class CodeType extends Component {
 
 
       });
-*/
+
     }
 
     render() {
@@ -58,8 +58,7 @@ class CodeType extends Component {
 
         return(
               <Container>
-            //  {codeType}
-              <Text>CHECK</Text>
+              {codeType}
               </Container>
         );
     }

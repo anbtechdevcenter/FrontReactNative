@@ -8,10 +8,7 @@ import {AnbUtil} from './components';
 import {CodeType} from './manage/CodeType';
 import RankView from './RankView';
 
-
-
-
-class FrontReactNative extends Component {
+class Login extends Component {
 
     constructor(props) {
         super(props);
@@ -46,20 +43,23 @@ class FrontReactNative extends Component {
         //callfn();
         console.log('token ', responseData);
         let msg = responseData.error;
-        if(msg){
+        let ackey = responseData.access_token;
+        console.log("msg is : ", msg);
+
+        if(msg!==undefined){
           Toast.show({
             //supportedOrientations="potrait",
               text: msg,
               position: 'center',
               buttonText: 'Okay'
           });
-        }else{
+        }else if(ackey!==undefined){
           // set auth
           let get_token = responseData.access_token;
           console.log("[access_token is] ", get_token);
 
           AsyncStorage.setItem("access_token", get_token);
-          navigate('CodeType');
+          navigate('Main');
 
         }
 
@@ -116,4 +116,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default FrontReactNative;
+export default Login;

@@ -57,12 +57,10 @@ class FrontReactNative extends Component {
           // set auth
           let get_token = responseData.access_token;
           console.log("[access_token is] ", get_token);
-          let val =  AsyncStorage.setItem('access_token', get_token);
 
+          AsyncStorage.setItem("access_token", get_token);
           navigate('CodeType');
-          //()=>{
-          //  navigate('CodeType')
-          //}
+
         }
 
 

@@ -1,53 +1,66 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, StyleSheet , View} from 'react-native';
+import _ from 'lodash';
+import { ActivityIndicator, StyleSheet , View ,
+  AsyncStorage} from 'react-native';
 import { Container, Content, List, ListItem, Text ,
     Toast, Form, Input ,Header, Left, Label, Item, Right,Body, Title, Button, Icon} from 'native-base';
 import {AnbUtil} from './components';
+import {CodeType} from './manage/CodeType';
 import RankView from './RankView';
 
-
-
-
-class FrontReactNative extends Component {
+class Login extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+          access_token : ''
+        };
     }
 
     static navigationOptions = {
       title : '에이앤비 그룹웨어'
     };
 
-    _handleLogin(){
-      console.log("start is");
-      let data = {
-       'grant_type' : 'password',
-       'username' : 'jhseo@anbtech.com',
-       'password' : '1'
-       };
+    _handleLogin(navigate){
+      //console.log("start is");
+      let data = "grant_type=password&"+
+       "username=jhseo@anbtech.com&"+
+       "password=1";
 
-      fetch("http://restnfeel.cloud.tyk.io/token/", {
+
+
+      fetch("https://restnfeel.cloud.tyk.io/token/", {
         method : 'post',
-        credentials: 'same-origin',
         headers : {
           'Accept': 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization' : 'Basic YW5iZGV2Y2VudGVyLWNsaWVudC13aXRoLXNlY3JldDpkZXZjZW50ZXI='
         },
-        body : JSON.stringify(data)
+        body : data
       })
       .then((response)=>response.json())
       .then((responseData)=>{
         //callfn();
         console.log('token ', responseData);
         let msg = responseData.error;
-        if(msg){
+        let ackey = responseData.access_token;
+        console.log("msg is : ", msg);
+
+        if(msg!==undefined){
           Toast.show({
             //supportedOrientations="potrait",
               text: msg,
               position: 'center',
-              buttonText: '닫기'
+              buttonText: 'Okay'
           });
+        }else if(ackey!==undefined){
+          // set auth
+          let get_token = responseData.access_token;
+          console.log("[access_token is] ", get_token);
+
+          AsyncStorage.setItem("access_token", get_token);
+          navigate('Main');
+
         }
 
 
@@ -64,12 +77,16 @@ class FrontReactNative extends Component {
 
     }
 
+
+
     render() {
 
       const {navigate} = this.props.navigation;
 
         return(
+
           <Container>
+
             <View style={styles.container}>
             <Form>
                            <Item fixedLabel>
@@ -81,10 +98,9 @@ class FrontReactNative extends Component {
                                <Input value="1"/>
                            </Item>
                            <Button full rounded>
-                             <Text onPress={this._handleLogin}>Login</Text>
+                             <Text onPress={this._handleLogin(navigate)}>Login</Text>
                              </Button>
                        </Form>
-
 </View>
           </Container>
         );
@@ -100,4 +116,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default FrontReactNative;
+export default Login;

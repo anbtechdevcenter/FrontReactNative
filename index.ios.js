@@ -5,7 +5,8 @@
  */
 
 import {AppRegistry} from  'react-native';
-import FrontReactNative from './app/FrontReactNative';
+import Login from './app/Login';
+import Main from './app/Main';
 import { StackNavigator } from 'react-navigation';
 
 import CodeType from './app/manage/CodeType';
@@ -14,7 +15,8 @@ import StaffView from './app/staff/StaffView';
 import StaffDetail from './app/staff/StaffDetail';
 
 const App = StackNavigator({
-  Main : {screen : FrontReactNative},
+  Main : {screen : Main},
+  Login : {screen : Login},
   CodeType : {screen : CodeType},
   Rank : {screen : RankView},
   Staff : {screen : StaffView},

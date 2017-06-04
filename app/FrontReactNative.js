@@ -19,15 +19,16 @@ class FrontReactNative extends Component {
     };
 
     _handleLogin(){
-      //console.log("start is");
+      console.log("start is");
       let data = {
-       "grant_type" : "password",
-       "username" : "jhseo@anbtech.com",
-       "password" : "1"
+       'grant_type' : 'password',
+       'username' : 'jhseo@anbtech.com',
+       'password' : '1'
        };
 
-      fetch("https://restnfeel.cloud.tyk.io/token/", {
+      fetch("http://restnfeel.cloud.tyk.io/token/", {
         method : 'post',
+        credentials: 'same-origin',
         headers : {
           'Accept': 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -45,7 +46,7 @@ class FrontReactNative extends Component {
             //supportedOrientations="potrait",
               text: msg,
               position: 'center',
-              buttonText: 'Okay'
+              buttonText: '닫기'
           });
         }
 

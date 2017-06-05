@@ -15,8 +15,8 @@ import StaffView from './app/staff/StaffView';
 import StaffDetail from './app/staff/StaffDetail';
 
 const App = StackNavigator({
-  Main : {screen : Main},
   Login : {screen : Login},
+  Main : {screen : Main},
   CodeType : {screen : CodeType},
   Rank : {screen : RankView},
   Staff : {screen : StaffView},

@@ -71,7 +71,7 @@ const {navigate} = this.props.navigation;
         return(
             <Container>
               <Content>
-                s{staffs}
+                {staffs}
               </Content>
             </Container>
         );

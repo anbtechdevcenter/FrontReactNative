@@ -5,8 +5,6 @@ import { ActivityIndicator, StyleSheet , View ,
 import { Container, Content, List, ListItem, Text ,
     Toast, Form, Input ,Header, Left, Label, Item, Right,Body, Title, Button, Icon} from 'native-base';
 import {AnbUtil} from './components';
-import {CodeType} from './manage/CodeType';
-import RankView from './RankView';
 
 class Login extends Component {
 

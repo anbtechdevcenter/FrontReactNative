@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { ActivityIndicator, StyleSheet, Navigator } from 'react-native';
 import { Container, Content, List, ListItem, Text ,Header ,Body, Title} from 'native-base';
-import Forecast from './Forecast';
-import {AnbUtil} from './components';
+import {AnbUtil} from './../components';
 
 
 export default class RankView extends Component {
@@ -37,7 +36,7 @@ export default class RankView extends Component {
         console.log("[rank is] ", res);
         let error = res.error;
         if(error){
-          
+
         }else{
           this.setState({
             ranklist : res,

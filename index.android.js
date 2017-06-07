@@ -10,7 +10,7 @@ import Main from './app/Main';
 import { StackNavigator } from 'react-navigation';
 
 import CodeType from './app/manage/CodeType';
-import RankView from './app/RankView';
+import RankView from './app/manage/RankView';
 import StaffView from './app/staff/StaffView';
 import StaffDetail from './app/staff/StaffDetail';
 

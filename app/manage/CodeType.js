@@ -58,7 +58,9 @@ class CodeType extends Component {
 
         return(
               <Container>
-              {codeType}
+                <Content>
+                  {codeType}
+                </Content>
               </Container>
         );
     }

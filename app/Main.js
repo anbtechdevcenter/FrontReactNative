@@ -46,6 +46,11 @@ const {navigate} = this.props.navigation;
                 } }>
                 <Text>Staff</Text>
               </Button>
+              <Button full light onPress={ ()=>{
+                  navigate('Holiday');
+                } }>
+                <Text>Holiday</Text>
+              </Button>
             </Container>
         );
     }

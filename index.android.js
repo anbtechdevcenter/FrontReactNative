@@ -13,6 +13,7 @@ import CodeType from './app/manage/CodeType';
 import RankView from './app/manage/RankView';
 import StaffView from './app/staff/StaffView';
 import StaffDetail from './app/staff/StaffDetail';
+import Holiday from './app/holiday/Holiday';
 
 const App = StackNavigator({
   Login : {screen : Login},
@@ -20,7 +21,8 @@ const App = StackNavigator({
   CodeType : {screen : CodeType},
   Rank : {screen : RankView},
   Staff : {screen : StaffView},
-  StaffDetail : {screen :StaffDetail}
+  StaffDetail : {screen :StaffDetail},
+  Holiday : {screen : Holiday}
 });
 
 AppRegistry.registerComponent('FrontReactNative', () => App);

@@ -1,11 +1,16 @@
 import React,{ Component } from 'react';
-import {AsyncStorage} from 'react-native';
+import {AsyncStorage, ActivityIndicator} from 'react-native';
 
 const API_URL = "https://restnfeel.cloud.tyk.io";
 
 export default class AnbUtil  extends Component{
 
-
+  constructor(props){
+    super(props);
+    this.state = {
+      animating : true
+    }
+  }
 
   static REST(obj , callfn){
     let cType = obj.type;
@@ -15,10 +20,10 @@ export default class AnbUtil  extends Component{
 
   async function _getTokenKey(){
       let rv = await AsyncStorage.getItem('access_token');
-      console.log("# ",rv);
+    //  console.log("# ",rv);
       access_token = rv;
 
-      console.log("AUBUTIL access_token ", access_token);
+    //  console.log("AUBUTIL access_token ", access_token);
 
           switch (cType) {
             case "R":
@@ -96,11 +101,11 @@ export default class AnbUtil  extends Component{
 
 render(){
   return(
-    <div>
-
-
-
-    </div>
+    <ActivityIndicator
+        animating={this.state.animating}
+        style={[styles.centering, {height: 80}]}
+        size="large"
+      />
   );
 }
 

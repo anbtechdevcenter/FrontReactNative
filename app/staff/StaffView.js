@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { ActivityIndicator, StyleSheet, Navigator } from 'react-native';
-import { Container, Content, List, ListItem, Text ,Header ,Body, Title} from 'native-base';
+import { ActivityIndicator, StyleSheet, Navigator} from 'react-native';
+import { Container, Content, List, ListItem, Text ,Header ,Body, Title,
+          Card, CardItem} from 'native-base';
 import {AnbUtil} from './../components';
 
 const propTypes = {
@@ -51,23 +52,27 @@ const {navigate} = this.props.navigation;
       let staffs = this.state.staffList.map(
         (staff) => {
           return (
-            <List key={staff.empId}>
-              <ListItem onPress={()=>navigate('StaffDetail')}>
-                <Body>
-                  <Text>{staff.empNm} {staff.rank.rankName}</Text>
-                  <Text note>{staff.email}</Text>
-                  <Text note>{staff.project.prjNm} [{staff.project.startDate}]</Text>
-                  <Text note>{staff.team}</Text>
-                </Body>
-              </ListItem>
-            </List>
+              <Card key={staff.empId}>
+                <CardItem header>
+                    <Text>{staff.empNm} {staff.rank.rankName}</Text>
+                </CardItem>
+                <CardItem>
+                  <Body>
+                    <Text note>{staff.email}</Text>
+                    <Text note>{staff.project.prjNm} [{staff.project.startDate}]</Text>
+                    <Text note>{staff.team}</Text>
+                  </Body>
+                </CardItem>
+              </Card>
           )
         }
       );
 
         return(
             <Container>
-              {staffs}
+              <Content>
+                s{staffs}
+              </Content>
             </Container>
         );
     }
